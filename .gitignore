@@ -1,0 +1,10 @@
+# dotfile
+.DS_Store
+
+# binary file
+/bin
+
+# go mod pkg
+/vendor
+
+go.sum
