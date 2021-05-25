@@ -1,0 +1,19 @@
+name: Sync Wispeeer
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every 1 days;eg */30 * * * * = 30min
+  workflow_dispatch: # on button click
+
+jobs:
+  sync:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: tgymnich/fork-sync@v1.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ka1i
+          base: master
+          head: master
