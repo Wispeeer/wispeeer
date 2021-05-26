@@ -60,7 +60,7 @@ func start(argc int, argv []string) {
 			err = fmt.Errorf("wispeeer new <title>")
 		}
 	case "-g", "generate":
-		log.Println("generate")
+		err = cmd.Generate()
 	case "-s", "server":
 		log.Println("server")
 	case "-d", "deploy":
