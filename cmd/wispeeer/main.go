@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/ka1i/wispeeer/internal/app/cmd"
 	"github.com/ka1i/wispeeer/internal/pkg/usage"
 	"github.com/ka1i/wispeeer/internal/pkg/utils"
 	"github.com/ka1i/wispeeer/pkg/version"
@@ -38,7 +39,7 @@ func start(argc int, argv []string) {
 	case "-i", "init":
 		if argc > 2 {
 			if utils.IsValid(argv[1]) {
-				log.Println("init")
+				err = cmd.Initialzation(argv[1])
 			} else {
 				err = fmt.Errorf("invalid name")
 			}

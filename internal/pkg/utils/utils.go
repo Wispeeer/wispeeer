@@ -1,8 +1,11 @@
 package utils
 
 import (
+	"fmt"
 	"log"
+	"os"
 	"regexp"
+	"time"
 )
 
 // IsValid ...
@@ -14,4 +17,18 @@ func IsValid(str string) bool {
 	}
 	result := reg.FindAllString(str, -1)
 	return len(result) <= 0
+}
+
+// Timer ...
+func Timer(action string, start time.Time) {
+	dis := time.Since(start)
+	if dis > 1 {
+		fmt.Printf("%s >>> Done in %v\n", action, dis)
+	}
+}
+
+// IsExist ...
+func IsExist(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
 }
