@@ -22,9 +22,9 @@ func Initialzation(title string) error {
 		return fmt.Errorf("%s: File exists", title)
 	}
 
-	logeer.WispeeerLogger("init", "Info", fmt.Sprintf("wispeeer init %s", title))
+	logeer.WispeeerLog("init").Infof("wispeeer init %s", title)
 
-	logeer.WispeeerLogger("init", "Info", "unpkg embed assets")
+	logeer.WispeeerLog("init").Info("unpkg embed assets")
 
 	var storage = assets.GetStorage()
 	fs := storage.Fs

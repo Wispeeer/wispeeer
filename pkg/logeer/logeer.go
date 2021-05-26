@@ -10,19 +10,13 @@ var log = logrus.New()
 
 func init() {
 	log.SetFormatter(&logrus.TextFormatter{
-		DisableTimestamp: true,
+		FullTimestamp:   true,
+		TimestampFormat: "15:04:05",
 	})
 	log.SetOutput(os.Stdout)
 }
 
-func WispeeerLogger(task, level, msg string) {
-	switch level {
-	case "Info":
-		logFormater(task).Info(msg)
-	}
-}
-
-func logFormater(task string) *logrus.Entry {
+func WispeeerLog(task string) *logrus.Entry {
 	return log.WithFields(logrus.Fields{
 		"task": task,
 	})

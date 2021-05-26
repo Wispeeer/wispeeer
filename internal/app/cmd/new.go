@@ -20,7 +20,7 @@ func NewArticle(title string) error {
 	if err != nil {
 		return err
 	}
-	logeer.WispeeerLogger("new", "Info", fmt.Sprintf("Location: %s", utils.GetWorkspace()))
+	logeer.WispeeerLog("new").Infof("Location: %s", utils.GetWorkspace())
 
 	// 检查文章发布文件夹状态 checkAndFixPostDIR
 	if !utils.IsExist(path.Join(utils.GetWorkspace(), wispeeerConfig.SourceDir)) {

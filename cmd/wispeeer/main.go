@@ -73,6 +73,6 @@ func start(argc int, argv []string) {
 		err = fmt.Errorf("wispeeer usage: wispeeer -h")
 	}
 	if err != nil {
-		logeer.WispeeerLogger("main", "Info", err.Error())
+		logeer.WispeeerLog("main").Error(err)
 	}
 }
