@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/ka1i/wispeeer/internal/app/cmd"
 	"github.com/ka1i/wispeeer/internal/pkg/usage"
 	"github.com/ka1i/wispeeer/internal/pkg/utils"
+	"github.com/ka1i/wispeeer/pkg/logeer"
 	"github.com/ka1i/wispeeer/pkg/version"
 )
 
@@ -50,7 +52,7 @@ func start(argc int, argv []string) {
 	case "-n", "new":
 		if argc > 2 {
 			if utils.IsValid(argv[1]) {
-				log.Println("new")
+				err = cmd.NewArticle(argv[1])
 			} else {
 				err = fmt.Errorf("invalid title")
 			}
@@ -71,6 +73,6 @@ func start(argc int, argv []string) {
 		err = fmt.Errorf("wispeeer usage: wispeeer -h")
 	}
 	if err != nil {
-		log.Printf("%s", err)
+		logeer.WispeeerLogger("main", "Info", err.Error())
 	}
 }

@@ -4,7 +4,6 @@ import (
 	"embed"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -12,6 +11,7 @@ import (
 
 	"github.com/ka1i/wispeeer/internal/pkg/utils"
 	"github.com/ka1i/wispeeer/pkg/assets"
+	"github.com/ka1i/wispeeer/pkg/logeer"
 )
 
 //Initialzation ...
@@ -21,9 +21,11 @@ func Initialzation(title string) error {
 	if utils.IsExist(title) {
 		return fmt.Errorf("%s: File exists", title)
 	}
-	log.Printf("wispeeer init %s", title)
 
-	log.Printf("unpkg embed assets")
+	logeer.WispeeerLogger("init", "Info", fmt.Sprintf("wispeeer init %s", title))
+
+	logeer.WispeeerLogger("init", "Info", "unpkg embed assets")
+
 	var storage = assets.GetStorage()
 	fs := storage.Fs
 	root := storage.Root
@@ -37,7 +39,7 @@ func Initialzation(title string) error {
 func assetsUnpkg(fs *embed.FS, root, start, title string) error {
 	assets, err := fs.ReadDir(start)
 	if err != nil {
-		return fmt.Errorf("read embed dir >>> %v", err)
+		return err
 	}
 	for _, file := range assets {
 		src := path.Join(start, file.Name())
